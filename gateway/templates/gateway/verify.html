@@ -1,0 +1,22 @@
+{% extends 'gateway/base.html' %}
+
+{% block title %}Verificacion 2FA{% endblock %}
+
+{% block content %}
+<div class="mx-auto w-full max-w-md">
+    <form method="post" class="glass-panel reveal text-center" novalidate>
+        {% csrf_token %}
+        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.25em] text-cyan-200">Paso 2</p>
+        <h1 class="text-3xl font-extrabold text-white">Verifica tu codigo</h1>
+        <p class="mt-4 text-sm leading-6 text-slate-300">
+            Enviamos un codigo de 6 digitos a {{ email }} y {{ phone }}.
+        </p>
+
+        <label class="sr-only" for="code">Codigo de confirmacion</label>
+        <input class="code-input" id="code" name="code" type="text" inputmode="numeric" maxlength="6" placeholder="000000" required autofocus>
+
+        <button class="transparent-btn mt-7 w-full" type="submit">Confirmar y continuar</button>
+        <a class="mt-5 inline-flex text-sm font-medium text-cyan-200 hover:text-white" href="{% url 'login' %}">Solicitar otro codigo</a>
+    </form>
+</div>
+{% endblock %}

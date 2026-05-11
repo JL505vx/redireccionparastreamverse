@@ -1,0 +1,50 @@
+{% extends 'gateway/base.html' %}
+
+{% block title %}Acceso Streamverse{% endblock %}
+
+{% block content %}
+<div class="grid items-center gap-10 lg:grid-cols-[1fr_430px]">
+    <div class="reveal max-w-2xl">
+        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-cyan-200">Secure redirect gateway</p>
+        <h1 class="text-balance text-5xl font-extrabold leading-tight text-white sm:text-6xl">
+            Streamverse
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-8 text-slate-200">
+            Una puerta de entrada local con verificacion en dos pasos antes de enviar al usuario al destino final.
+        </p>
+        <div class="mt-9 grid gap-4 sm:grid-cols-3">
+            <div class="metric reveal">
+                <span>01</span>
+                <strong>Captura</strong>
+            </div>
+            <div class="metric reveal">
+                <span>02</span>
+                <strong>Codigo 2FA</strong>
+            </div>
+            <div class="metric reveal">
+                <span>03</span>
+                <strong>Redireccion</strong>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" class="glass-panel reveal" novalidate>
+        {% csrf_token %}
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-white">Login sencillo</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-300">Ingresa tus datos para generar el codigo de confirmacion.</p>
+        </div>
+
+        <label class="field-label" for="name">Nombre</label>
+        <input class="field-input" id="name" name="name" type="text" autocomplete="name" placeholder="Tu nombre" required>
+
+        <label class="field-label" for="email">Correo</label>
+        <input class="field-input" id="email" name="email" type="email" autocomplete="email" placeholder="correo@dominio.com" required>
+
+        <label class="field-label" for="phone">Numero de telefono</label>
+        <input class="field-input" id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+52 000 000 0000" required>
+
+        <button class="transparent-btn mt-7 w-full" type="submit">Enviar codigo</button>
+    </form>
+</div>
+{% endblock %}
