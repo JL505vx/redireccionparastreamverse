@@ -1,4 +1,5 @@
 import random
+from .models import SolicitudAcceso
 from datetime import timedelta
 
 from django.conf import settings
@@ -33,6 +34,7 @@ def login_view(request):
             messages.error(request, 'Revisa tu nombre, correo y numero telefonico.')
             return render(request, 'gateway/login.html')
 
+        SolicitudAcceso.objects.create(nombre=name, correo=email, telefono=phone)
         code = f'{random.randint(100000, 999999)}'
         request.session['pending_user'] = {
             'name': name,
@@ -45,7 +47,7 @@ def login_view(request):
         print(f'[Streamverse Redirector] Codigo 2FA simulado para {email} / {phone}: {code}')
         messages.success(
             request,
-            f'Codigo enviado a {_mask_email(email)} y al numero {_mask_phone(phone)}. En demo local usa: {code}',
+	f'Tu solicitud fue recibida. En breve recibirás confirmación.',
         )
         return redirect('verify')
 
