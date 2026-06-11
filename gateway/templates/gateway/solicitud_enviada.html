@@ -1,0 +1,27 @@
+{% extends 'gateway/base.html' %}
+
+{% block title %}Solicitud recibida — Streamverse{% endblock %}
+
+{% block content %}
+<div class="flex min-h-[70vh] items-center justify-center">
+    <div class="glass-panel reveal max-w-md w-full text-center">
+        <div class="mb-6 flex justify-center">
+            <div style="width:64px;height:64px;border-radius:50%;background:rgba(40,209,124,.15);display:grid;place-items:center;">
+                <svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="#28d17c" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+        </div>
+        <h2 class="text-2xl font-bold text-white mb-3">Solicitud recibida</h2>
+        <p class="text-slate-300 leading-7">
+            Hola <strong class="text-white">{{ name }}</strong>, recibimos tu solicitud.<br>
+            En cuanto sea aprobada te llegara tu codigo de acceso al WhatsApp
+            <strong class="text-white">{{ phone_masked }}</strong>.
+        </p>
+        <p class="mt-6 text-slate-400 text-sm">
+            Cuando tengas tu codigo, entra en:<br>
+            <strong class="text-cyan-300">projectgp.online/streamverse</strong>
+        </p>
+    </div>
+</div>
+{% endblock %}
